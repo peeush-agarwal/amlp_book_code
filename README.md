@@ -3,3 +3,4 @@
 Practice code from above book. 
 
 1. [Supervised and unsupervised learning](/1_Supervised_Unsupervised_Learning/)
+2. [Cross validation](/2_Cross_Validation/)
