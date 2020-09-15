@@ -27,3 +27,10 @@ We need some metrics to evaluate our trained models to verify how they might per
    1. Precision
    1. Recall
    1. F1-score
+
+### [Multi-label classification](3_Multi_Label_Classification_Evaluation_Metrics.ipynb)
+
+1. Precision at k (P@k)
+1. Average precision at k (AP@k)
+1. Mean average precision at k (MAP@k)
+1. Mean column-wise log loss
