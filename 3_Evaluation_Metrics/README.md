@@ -34,3 +34,5 @@ We need some metrics to evaluate our trained models to verify how they might per
 1. Average precision at k (AP@k)
 1. Mean average precision at k (MAP@k)
 1. Mean column-wise log loss
+
+## [Regression evaluation metrics](4_Regression_Evaluation_Metrics.ipynb)
