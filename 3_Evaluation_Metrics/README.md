@@ -36,3 +36,5 @@ We need some metrics to evaluate our trained models to verify how they might per
 1. Mean column-wise log loss
 
 ## [Regression evaluation metrics](4_Regression_Evaluation_Metrics.ipynb)
+
+## [Advanced evaluation metrics](5_Advanced_Evaluation_Metrics.ipynb)
