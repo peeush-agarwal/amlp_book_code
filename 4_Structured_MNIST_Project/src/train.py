@@ -1,3 +1,4 @@
+import argparse
 import joblib
 import os
 
@@ -46,8 +47,9 @@ def run(fold):
     joblib.dump(clf, os.path.join(config.MODELS_OUTPUT, f'dt_fold_{fold}.bin'))
 
 if __name__ == "__main__":
-    run(fold=0)
-    run(fold=1)
-    run(fold=2)
-    run(fold=3)
-    run(fold=4)
+    # Parse arguments from CLI
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--fold', type=int, required=True)
+    args = ap.parse_args()
+
+    run(args.fold)
