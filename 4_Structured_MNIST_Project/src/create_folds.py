@@ -1,8 +1,10 @@
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 
+import config
+
 def k_folds_train(k=5):
-    filename = '../input/train.csv' #'input/train.csv'
+    filename = config.INPUT_TRAIN_FILE
     df = pd.read_csv(filename)
 
     # Create new column and fill it with -1
@@ -22,7 +24,7 @@ def k_folds_train(k=5):
         df.loc[v_, 'kfold'] = i
 
     # Save the data to 'train_folds.csv'
-    df.to_csv('../input/train_folds.csv', index=False)
+    df.to_csv(config.FOLDS_OUTPUT_FILE, index=False)
 
 if __name__ == "__main__":
     k_folds_train(k=5)
