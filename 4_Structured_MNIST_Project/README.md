@@ -33,7 +33,7 @@ In this project, we want to classify the given pixel values (28x28 = 784) of an 
 
 + Run `src/create_folds.py` to create folds for `train.csv` and push it in `train_folds.csv`.
   ``` shell
-  $ pythons create_folds.py
+  $ python3 create_folds.py
   ```
 + Run `src/run.sh` to train the model and save trained models into `models` folder.
   ``` shell
@@ -43,4 +43,3 @@ In this project, we want to classify the given pixel values (28x28 = 784) of an 
   + dt_gini: `DecisionTreeClassifier` with `criterion=gini`
   + dt_entropy: `DecisionTreeClassifier` with `criterion=entropy`
   + rf: `RandomForestClassifier`
-
