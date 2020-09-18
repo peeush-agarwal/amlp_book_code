@@ -7,13 +7,15 @@ from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 
 import config
+import model_dispatcher
 
-def run(fold):
+def run(fold, model):
     """
     Function that splits the data according to fold,
     then trains the model, and saves it.
 
     :param fold: Value for 'kfold' column to filter with
+    :param model: model name to load from model_dispatcher
     """
 
     # Load the dataframe from train data with folds
@@ -30,8 +32,8 @@ def run(fold):
     x_val = val_data.drop('label', axis=1).values
     y_val = val_data['label'].values
 
-    # Make an object of the DecisionTreeClassifier model
-    clf = DecisionTreeClassifier()
+    # Fetch model from model_dispatcher
+    clf = model_dispatcher.models[model]
 
     # Fit the model on train data
     clf.fit(x_train, y_train)
@@ -41,15 +43,16 @@ def run(fold):
 
     # Evaluate the model using accuracy_score
     accuracy = accuracy_score(y_val, y_val_preds)
-    print(f'Fold={fold}, Accuracy: {accuracy}')
+    print(f'Fold={fold}, Model={model}, Accuracy: {accuracy}')
 
     # Save the model into output folder
-    joblib.dump(clf, os.path.join(config.MODELS_OUTPUT, f'dt_fold_{fold}.bin'))
+    joblib.dump(clf, os.path.join(config.MODELS_OUTPUT, f'{model}_fold_{fold}.bin'))
 
 if __name__ == "__main__":
     # Parse arguments from CLI
     ap = argparse.ArgumentParser()
     ap.add_argument('--fold', type=int, required=True)
+    ap.add_argument('--model', type=str, required=True)
     args = ap.parse_args()
 
-    run(args.fold)
+    run(args.fold, args.model)
