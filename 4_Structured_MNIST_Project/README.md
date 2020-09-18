@@ -32,4 +32,7 @@ In this project, we want to classify the given pixel values (28x28 = 784) of an 
 ## Model building
 
 + Run `src/create_folds.py` to create folds for `train.csv` and push it in `train_folds.csv`.
-+ Run `src/train.py` to train the model and save trained models into `models` folder.
++ Run `src/run.sh` to train the model and save trained models into `models` folder.
+  ``` shell
+  sh run.sh
+  ```
