@@ -42,4 +42,5 @@ In this project, we want to classify the given pixel values (28x28 = 784) of an 
   MODEL_NAME is the key name from model_dispatcher.py
   + dt_gini: `DecisionTreeClassifier` with `criterion=gini`
   + dt_entropy: `DecisionTreeClassifier` with `criterion=entropy`
+  + rf: `RandomForestClassifier`
 
