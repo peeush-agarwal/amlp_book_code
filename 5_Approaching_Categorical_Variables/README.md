@@ -17,3 +17,7 @@
   ```
 + You get a zip file from above command. Unzip the file and move `train.csv` and `test.csv` files inside `/input` directory.
 
+## Explore the data
+
++ Add `notebooks` folder
++ Create a new notebook [explore_data.ipynb](notebooks/explore_data.ipynb) inside `notebooks` directory.
