@@ -15,7 +15,7 @@ def run():
     y = train_data['target'].values
 
     # create object of StratifiedKFold
-    kf = StratifiedKFold()
+    kf = StratifiedKFold(n_splits=5)
 
     # split the data into train and validation
     for fold, (t_, v_) in enumerate(kf.split(train_data, y)):
