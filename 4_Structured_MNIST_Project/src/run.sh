@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Example: $ sh run.sh dt_gini
+# Example: $ bash run.sh dt_gini
 # change model name after run.sh to run for other model defined in model_dispatcher
 
 MODEL=$1
