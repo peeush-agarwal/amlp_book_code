@@ -13,12 +13,14 @@ import os
 import argparse
 
 import config
+import model_dispatcher
 
-def run(fold):
+def run(fold, model_name):
     """
     Run an iteration of training model for a single fold. It displays the AUC score of the trained model.
 
     :params fold: Fold value
+    :params model_name: Model name from model_dispatcher
     """
 
     # Load the data file into memory
@@ -52,25 +54,26 @@ def run(fold):
     x_val = df_val[features]
 
     # Create an object of RandomForestClassifier
-    rf = RandomForestClassifier(n_jobs=-1)
+    modl = model_dispatcher.MODELS[model_name]
 
     # Fit the classifier on training data
-    rf.fit(x_train, df_train['target'].values)
+    modl.fit(x_train, df_train['target'].values)
 
     # Predict the target values for Validation features
-    y_val_preds = rf.predict_proba(x_val)[:, 1]
+    y_val_preds = modl.predict_proba(x_val)[:, 1]
 
     # Measure the AUC score
     auc_score = roc_auc_score(df_val['target'].values, y_val_preds)
 
-    print(f'Fold={fold}, AUC score={auc_score}')
+    print(f'Model={model_name}, Fold={fold}, AUC score={auc_score}')
 
     # Save the model
-    joblib.dump(rf, os.path.join(config.MODEL_OUTPUT_DIR, f'lbl_rf_fold_{fold}.bin'))
+    joblib.dump(modl, os.path.join(config.MODEL_OUTPUT_DIR, f'lbl_{model_name}_fold_{fold}.bin'))
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument('--fold', type=int, required=True, help='Fold value')
+    ap.add_argument('--model', type=str, required=True, help="Model name from model_dispatcher")
     args = ap.parse_args()
 
-    run(args.fold)
+    run(args.fold, args.model)
