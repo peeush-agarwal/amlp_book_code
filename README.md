@@ -14,4 +14,6 @@ Practice code from above book.
          + This gives us AUC score of ~0.71 which is worse than Logistic regression model.
          + This model also takes more time and space compared to Logistic regression model.
          + This implies that we should never ignore basic model when training for the problem.
-   1. [LabelEncoding + XGBoost model]
+      1. XGBoost model
+         + This gives us AUC score of ~0.76 which is better than RandomForest model, but still not better than Logistic regression model.
+         + This model also takes more time and space compared to Logistic regression and RandomForest models.
