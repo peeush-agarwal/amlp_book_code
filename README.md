@@ -8,3 +8,4 @@ Practice code from above book.
 1. [Project structure for any ML project](/4_Structured_MNIST_Project/)
 1. [Approaching categorical variables](/5_Approaching_Categorical_Variables/)
    1. [OneHot encoding + Logistic Regression model](/5_Approaching_Categorical_Variables/src/ohe_logres.py)
+      This gives us AUC score of ~0.78 which is good. As the AUC score is in range of 0-1 and 1 being the perfect model.
