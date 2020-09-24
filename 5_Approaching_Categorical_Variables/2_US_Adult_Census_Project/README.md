@@ -17,3 +17,6 @@
 + After exploring the data, we'll start building different models using different algorithms (Logistic regression, Random Forest, etc.)
 + Add `src` folder
 + Add a new python file `ohe_logres.py` which will train a LogisticRegression model after transformation of one-hot encoding on categorical features.
+  + This gives us AUC score of `~0.87` which is really good from the simple model.
++ Next, train a Label encoded XGBoost model in `lbl_xgb.py` file.
+  + This also gives us AUC score of `~0.87` with no hyperparameter tuning.
