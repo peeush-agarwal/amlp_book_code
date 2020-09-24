@@ -21,3 +21,4 @@
 + Next, train a Label encoded XGBoost model in `lbl_xgb.py` file.
   + This also gives us AUC score of `~0.87` with no hyperparameter tuning.
   + AUC score of `~0.86` with *max_depth=7* and *n_estimators=200*.
+  + Next, include numerical columns and default hyperparameters gives AUC score of `~0.92`. Much better than LogisticRegression model.
