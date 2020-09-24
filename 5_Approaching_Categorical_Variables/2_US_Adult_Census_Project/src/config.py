@@ -4,3 +4,4 @@ COLUMNS = ['age','workclass','fnlwgt','education','education_num',
            'income']
 TRAINING_FILE = '../input/adult-training.csv'
 TRAINING_FOLDS_FILE = '../input/adult-training-folds.csv'
+MODEL_OUTPUT_DIR = '../models/'
