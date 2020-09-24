@@ -20,3 +20,4 @@
   + This gives us AUC score of `~0.87` which is really good from the simple model.
 + Next, train a Label encoded XGBoost model in `lbl_xgb.py` file.
   + This also gives us AUC score of `~0.87` with no hyperparameter tuning.
+  + AUC score of `~0.86` with *max_depth=7* and *n_estimators=200*.
