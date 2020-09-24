@@ -41,7 +41,10 @@ def run(fold):
     df_val = df[df['kfold'] == fold].reset_index(drop=True)
 
     # Create an object of XGBoost model
-    model = xgb.XGBClassifier(n_jobs=-1)
+    model = xgb.XGBClassifier(
+        n_jobs=-1,
+        max_depth=7,
+        n_estimators=200)
 
     # Fit the model using training data
     model.fit(df_train[features].values, df_train['income'].values)
