@@ -15,7 +15,7 @@ def run(fold):
 
     # Drop numerical features
     num_cols = ['age','fnlwgt','capital_loss','capital_gain','hours_per_week']
-    df = df.drop(num_cols, axis=1)
+    # df = df.drop(num_cols, axis=1)
 
     # Fetch features 
     features = [feat for feat in df.columns if feat not in ['income', 'kfold']]
@@ -31,10 +31,11 @@ def run(fold):
     }
     df.loc[:,'income'] = df['income'].map(mapping)
 
-    # Label encode each feature
+    # Label encode each categorical feature only
     for col in features:
-        lbl = LabelEncoder()
-        df.loc[:, col] = lbl.fit_transform(df[col].values)
+        if col not in num_cols:
+            lbl = LabelEncoder()
+            df.loc[:, col] = lbl.fit_transform(df[col].values)
 
     # Split the dataframe into train and validation dataframes using fold value
     df_train = df[df['kfold'] != fold].reset_index(drop=True)
@@ -42,9 +43,7 @@ def run(fold):
 
     # Create an object of XGBoost model
     model = xgb.XGBClassifier(
-        n_jobs=-1,
-        max_depth=7,
-        n_estimators=200)
+        n_jobs=-1)
 
     # Fit the model using training data
     model.fit(df_train[features].values, df_train['income'].values)
