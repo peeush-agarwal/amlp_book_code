@@ -1,8 +1,10 @@
 #!/bin/bash
-echo "Training with" $1
+PY_FILE=$1
+MODEL=$2
+echo "Training with" $MODEL
 
-python3 -W ignore $1 --fold 0
-python3 -W ignore $1 --fold 1
-python3 -W ignore $1 --fold 2
-python3 -W ignore $1 --fold 3
-python3 -W ignore $1 --fold 4
+python3 -W ignore $PY_FILE --fold 0 --model $MODEL
+python3 -W ignore $PY_FILE --fold 1 --model $MODEL
+python3 -W ignore $PY_FILE --fold 2 --model $MODEL
+python3 -W ignore $PY_FILE --fold 3 --model $MODEL
+python3 -W ignore $PY_FILE --fold 4 --model $MODEL
