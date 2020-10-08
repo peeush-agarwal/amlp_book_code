@@ -8,8 +8,9 @@ import os
 import argparse
 
 import config
+import model_dispatcher
 
-def run(fold):
+def run(fold, model_name):
     # Load dataframe from training file with folds
     df = pd.read_csv(config.TRAINING_FOLDS_FILE)
 
@@ -42,8 +43,7 @@ def run(fold):
     df_val = df[df['kfold'] == fold].reset_index(drop=True)
 
     # Create an object of XGBoost model
-    model = xgb.XGBClassifier(
-        n_jobs=-1)
+    model = model_dispatcher.models[model_name]
 
     # Fit the model using training data
     model.fit(df_train[features].values, df_train['income'].values)
@@ -56,11 +56,12 @@ def run(fold):
     print(f'Fold={fold}, AUC score={auc_score}')
 
     # Save the model
-    joblib.dump(model, os.path.join(config.MODEL_OUTPUT_DIR, f'lbl_xgb_fold_{fold}.bin'))
+    joblib.dump(model, os.path.join(config.MODEL_OUTPUT_DIR, f'xgb_model_{model_name}_fold_{fold}.bin'))
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument('--fold', type=int, required=True, help='Fold value')
+    ap.add_argument('--model_name', required=True, help='Model name from model_dispatcher')
     args = ap.parse_args()
 
-    run(args.fold)
+    run(args.fold, args.model_name)

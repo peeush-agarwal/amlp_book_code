@@ -8,8 +8,9 @@ import os
 import argparse
 
 import config
+import model_dispatcher
 
-def run(fold):
+def run(fold, model_name):
     # Load training with folds file into dataframe
     df = pd.read_csv(config.TRAINING_FOLDS_FILE)
 
@@ -49,7 +50,7 @@ def run(fold):
     x_val = ohe.transform(df_val[features])
 
     # Create an object of LogisticRegression
-    model = LogisticRegression()
+    model = model_dispatcher.models[model_name]
 
     # Fit the LogisticRegression model on train data
     model.fit(x_train, df_train['income'].values)
@@ -62,11 +63,12 @@ def run(fold):
     print(f'Fold={fold}, AUC score={auc_score}')
 
     # Save the trained model with fold value
-    joblib.dump(model, os.path.join(config.MODEL_OUTPUT_DIR, f'ohe_logres_fold_{fold}.bin'))
+    joblib.dump(model, os.path.join(config.MODEL_OUTPUT_DIR, f'logres_model_{model_name}_fold_{fold}.bin'))
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument('--fold', type=int, required=True, help='Fold value')
+    ap.add_argument('--model_name', required=True, help='Model name from model_dispatcher')
     args = ap.parse_args()
 
-    run(args.fold)
+    run(args.fold, args.model_name)
