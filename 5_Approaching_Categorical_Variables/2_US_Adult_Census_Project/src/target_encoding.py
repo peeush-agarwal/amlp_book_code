@@ -15,6 +15,12 @@ from xgboost import XGBClassifier
 import config
 
 def mean_target_encoding(data):
+    """
+    Feature engineering using Target encoding on categorical features
+
+    :param data: Dataframe with fold value
+    :return: Encoded Dataframe with fold value
+    """
     # Create a copy of the data
     df = copy.deepcopy(data)
 
@@ -64,8 +70,8 @@ def run(df, fold_):
     """
     Train and evaluate the model on the dataframe for a fold value
 
-    :params df: Dataframe
-    :params fold_: Fold value to run
+    :param df: Dataframe
+    :param fold_: Fold value to run
     """
 
     # features
